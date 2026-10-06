@@ -13,3 +13,5 @@ publish our progress to the public.
 - Static content served
 - Browser JavaScript on client side
 - Engagement trackers reporting to Google Analytics
+- Docstrings, changelog, and file versioning
+- Section-separated webpage structure

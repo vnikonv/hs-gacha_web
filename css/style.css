@@ -1,0 +1,62 @@
+/**
+ * @file Stylesheet
+ * @author Nikon Veremeichik thesecondnikon@gmail.com
+ * @version 1.0
+ * @description Contians classes for components on the landing page
+ *
+ * Changelog:
+ * v1.0
+ * - Separated styles based on sections.
+ */
+
+/* ========================================
+   Navigation
+   ======================================== */
+
+nav {
+    
+}
+
+nav a {
+    
+}
+
+/* ========================================
+   Concept
+   ======================================== */
+
+#concept {
+    
+}
+
+/* ========================================
+   Features
+   ======================================== */
+
+#features {
+    /* Features section styles */
+}
+
+/* ========================================
+   Artwork
+   ======================================== */
+
+#artwork {
+    
+}
+
+/* ========================================
+   Inspiration
+   ======================================== */
+
+#inspiration {
+    
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+footer {
+    
+}
