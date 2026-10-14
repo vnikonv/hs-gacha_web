@@ -7,6 +7,12 @@
  * Changelog:
  * v1.0
  * - Loads functions from analytics.js to track events.
+ * v1.1
+ * - Added a click event listener to the Jaspers image that plays a meow sound
+ *   and tracks the click event.
+ * v1.2
+ * - Added a click event listener to the play button that plays The Baby is You.
+ *   The player can now be disabled.
  */
 
 /**
@@ -17,8 +23,54 @@ import { initializeAnalytics, trackEvent } from "./analytics.js";
 
 initializeAnalytics();
 
-const headingButton = document.querySelector("h1");
+function playSound(path) {
+  const audio = new Audio(path);
+  audio.play();
+}
 
-headingButton.addEventListener("click", () => {
-    trackEvent("header_click");
-});
+const jaspersButton = document.querySelector("#please img");
+const playButton = document.querySelector("#playB");
+const tbiy = new Audio("music/the_baby.mp3");
+const unstickB = document.querySelector("#unstickB");
+const stickB = document.querySelector("#stickB")
+const displayButton = document.querySelector("#displayB");
+
+if (jaspersButton) {
+    jaspersButton.addEventListener("click", () => {
+        trackEvent("jaspers_click");
+        playSound("music/meow.ogg");
+    });
+}
+
+if (playButton) {
+    playButton.addEventListener("click", () => {
+        tbiy.play();
+    });
+}
+
+const musicPlayer = document.querySelector("#music-player");
+
+if (unstickB) {
+    unstickB.addEventListener("click", () => {
+        if (musicPlayer) {
+            musicPlayer.classList.toggle("unsticky");
+        }
+    });
+}
+
+if (stickB) {
+    stickB.addEventListener("click", () => {
+        if (musicPlayer) {
+            musicPlayer.classList.toggle("unsticky");
+        }
+    })
+}
+
+if (displayButton) {
+    displayButton.addEventListener("click", () => {
+        if (musicPlayer) {
+            musicPlayer.classList.toggle("invisible");
+            tbiy.pause();
+        }
+    });
+}

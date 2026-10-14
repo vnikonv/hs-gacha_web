@@ -11,6 +11,11 @@
     Changelog:
     v1.0
     - Created the page structure.
+    v1.1
+    - Populated the page with images and wrote the text content for all sections.
+      Introduced a "please" section. Added Jaspers.
+    v1.2
+    - Added a custom music player.
 -->
 
 <!DOCTYPE html>
@@ -18,8 +23,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Homestuck Gacha Game</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>A Homestuck Gacha RPG</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav>
@@ -31,30 +36,103 @@
 
     <section id="concept">
         <!-- game title, description -->
-        <h1>A Homestuck Gacha Game</h1>
-        <h2>Checking the tag functionality.</h2>
-        <p>Checking...</p>
+        <h1>A Homestuck Gacha RPG</h1>
+        <h3>Yes, you read that correctly. No, you're not having a stroke</h3>
     </section>
 
     <section id="features">
         <!-- game features -->
+         <h3>Game Features:</h3>
+         <h4>Character Acquisition Mechanic</h4>
+         <h4>Character Aspects, Classes, and Strife Specibi / Weaponkind</h4>
+         <h4>RPG-on-a-grid</h4>
+         <h4>Dialogue System</h4>
+         <h4>Base Building</h4>
+         <img src="images/building.png">
+         <h4>Mixed View: Isometric and Top-down</h4>
+         <h4>Character Progression</h4>
+         <h4>Bullet Attack Patterns (when evading enemy attacks)</h4>
     </section>
 
     <section id="artwork">
         <!-- concept art, screenshots -->
+         <h3>Concept Art and In-game Screenshots</h3>
+         <img src="images/sketch-gamzeeV1.png">
+         <img src="images/sketch-gamzeeV2.png">
+         <img src="images/sketch-Logos.png">
+         <img src="images/vriska-sketch.png">
     </section>
 
     <section id="inspiration">
         <!-- influences, references, creative direction -->
+         <h3>Inspirations and Creative Direction</h3>
+         <h4>What is the game going to be like?</h4>
+         <p>Idk</p>
+         <h4>Games we use as reference frames:</h4>
+            <ul>
+                <li>Darkest Dungeon</li>
+                <img src="images/dd.png">
+                <p>Battle UI, turn-based battle system</p>
+                <li>Limbus Company</li>
+                <img src="images/limbus.png">
+                <p>Sprites, attack animations</p>
+                <li>For the King</li>
+                <img src="images/ftk.png">
+                <p>Grid-based movement</p>
+            </ul>
+        <h4>Fenestrated Walls as a resource for Rolls/Pulls</h4>
+         <img src="images/fenestrated_wall.gif">
+         <img src="images/fenestrated_wall2.png">
+    </section>
+
+    <section id="please">
+        <!-- support us by clicking Jaspers or going through a survey-->
+        <h3>If you want to play this (or want this game to be made)...</h3>
+        <h2>PLEASE</h2>
+        <h3>Click Japsers or complete our very specil
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdB-FsxCwAeVqJpQPb6IvzhFYgF2hJHMmiMaNhFSA3h_cPtHQ/viewform">survey</a>
+        </h3>
+        <img src="images/Jaspers1.png">
     </section>
 
     <footer>
         <!-- copyright, external links, acknowledgements -->
-        Homestuck is the intellectual property of Andrew Hussie.
-        This is an unofficial, non-commercial fan project.
-        Original art for Homestuck Gacha by Timon Galadima.
+        <p><a href="https://github.com/AidanV7/HS_Gacha">Project GitHub Repository</a></p>
+        <p>Homestuck is the intellectual property of Andrew Hussie</p>
+        <p>This is an unofficial, non-commercial fan project not affiliated with
+        any of the official Homestuck teams</p>
+        <p>Original art for Homestuck Gacha RPG by Timon Galadima</p>
     </footer>
 
-    <script type="module" src="/js/main.js"></script>
+    <section id="music-player">
+        <div id="player-top">
+            <img src="images/icon.png">
+            <p>L-AMP</p>
+            <div id="player-buttons">
+                <button id="unstickB"><img src="images/minimize.png"></button>
+                <button id="stickB"><img src="images/collapse.png"></button>
+                <button id="displayB"><img src="images/close.png"></button>
+            </div>
+        </div>
+        <div id="player-bottom">
+            <div id="cover-title">
+                <img id="cover" src="images/cover.png">
+                <p id="title">The Baby Is You - Toby "Radiation" Fox</p>
+            </div>
+            <div id="volume-slider">
+            </div>
+            <div id="timeline">
+            </div>
+            <div id="controls">
+                <button><img src="images/prev.png"></button>
+                <button id="playB"><img src="images/play.png"></button>
+                <button><img src="images/pause.png"></button>
+                <button><img src="images/stop.png"></button>
+                <button><img src="images/next.png"></button>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
