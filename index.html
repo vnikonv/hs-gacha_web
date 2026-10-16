@@ -16,6 +16,9 @@
       Introduced a "please" section. Added Jaspers.
     v1.2
     - Added a custom music player.
+    v1.3
+    - Added new gameplay screenshots. Finished the music player.
+      Finished writing down most of the content. Added ids for tracked links.
 -->
 
 <!DOCTYPE html>
@@ -44,19 +47,36 @@
         <!-- game features -->
          <h3>Game Features:</h3>
          <h4>Character Acquisition Mechanic</h4>
+         <p>As a player, you will collect characters from the Homestuck universe.</p>
          <h4>Character Aspects, Classes, and Strife Specibi / Weaponkind</h4>
+         <p>Every character has a unique combination of an aspect, a class, and
+            a strife specibus.
+         </p>
          <h4>RPG-on-a-grid</h4>
-         <h4>Dialogue System</h4>
+         <img src="images/screen_map.png">
+         <img src="images/screen_battle.png">
+         <p>This will improve over time. Placeholders will be replaced with
+            complete sprites once all the essencial mechanics have been implemented.
+         </p>
+         <h4>Linear Dialogue System and a Doomed Timeline Plot</h4>
+         <p>It has something to do with a certain clown.</p>
          <h4>Base Building</h4>
          <img src="images/building.png">
-         <h4>Mixed View: Isometric and Top-down</h4>
+         <img src="images/basebuilding_menu.png">
+         <p>Your home/hub that can be modified, expanded, and upgraded.</p>
+         <h4>Mixed View</h4>
+         <p>Isometric for Overworld and Top-down for Strifes.</p>
          <h4>Character Progression</h4>
+         <p>Unlock new skills, gain levels, and buy fraymotifs.</p>
+         <h4>A Centralized Sburb Game Server</h4>
+         <p>A meta-commentary on videogames. John will be his own server player.</p>
          <h4>Bullet Attack Patterns (when evading enemy attacks)</h4>
+         <p>::::)</p>
     </section>
 
     <section id="artwork">
-        <!-- concept art, screenshots -->
-         <h3>Concept Art and In-game Screenshots</h3>
+        <!-- concept art -->
+         <h3>Concept Art</h3>
          <img src="images/sketch-gamzeeV1.png">
          <img src="images/sketch-gamzeeV2.png">
          <img src="images/sketch-Logos.png">
@@ -67,18 +87,30 @@
         <!-- influences, references, creative direction -->
          <h3>Inspirations and Creative Direction</h3>
          <h4>What is the game going to be like?</h4>
-         <p>Idk</p>
+         <p>The gameplay loop consists of distinct stages: first, you build your base,
+            then you fight enemies, get resources for building more and upgrading your
+            characters, progress the story, and, finallly, pull a new character from
+            the gacha. You start as John Egbert and as soon as you insert the game disk
+            into your PC, the plot of HGRPG diverges from the Canon. We are going to try
+            and make it FUN.
+         </p>
          <h4>Games we use as reference frames:</h4>
             <ul>
-                <li>Darkest Dungeon</li>
-                <img src="images/dd.png">
-                <p>Battle UI, turn-based battle system</p>
-                <li>Limbus Company</li>
-                <img src="images/limbus.png">
-                <p>Sprites, attack animations</p>
-                <li>For the King</li>
-                <img src="images/ftk.png">
-                <p>Grid-based movement</p>
+                <div class="entry">
+                    <li>Darkest Dungeon</li>
+                    <img src="images/dd.png">
+                    <p>Battle UI, turn-based battle system</p>
+                </div>
+                <div class="entry">
+                    <li>Limbus Company</li>
+                    <img src="images/limbus.png">
+                    <p>Sprites, attack animations</p>
+                </div>
+                <div class="entry">
+                    <li>For the King</li>
+                    <img src="images/ftk.png">
+                    <p>Grid-based movement</p>
+                </div>
             </ul>
         <h4>Fenestrated Walls as a resource for Rolls/Pulls</h4>
          <img src="images/fenestrated_wall.gif">
@@ -90,14 +122,15 @@
         <h3>If you want to play this (or want this game to be made)...</h3>
         <h2>PLEASE</h2>
         <h3>Click Japsers or complete our very specil
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdB-FsxCwAeVqJpQPb6IvzhFYgF2hJHMmiMaNhFSA3h_cPtHQ/viewform">survey</a>
+        <a id="survey" href="https://docs.google.com/forms/d/e/1FAIpQLSdB-FsxCwAeVqJpQPb6IvzhFYgF2hJHMmiMaNhFSA3h_cPtHQ/viewform">survey</a>
         </h3>
         <img src="images/Jaspers1.png">
     </section>
 
     <footer>
         <!-- copyright, external links, acknowledgements -->
-        <p><a href="https://github.com/AidanV7/HS_Gacha">Project GitHub Repository</a></p>
+        <p><a id="git" href="https://github.com/AidanV7/HS_Gacha">
+            Project GitHub Repository</a></p>
         <p>Homestuck is the intellectual property of Andrew Hussie</p>
         <p>This is an unofficial, non-commercial fan project not affiliated with
         any of the official Homestuck teams</p>
@@ -115,21 +148,22 @@
             </div>
         </div>
         <div id="player-bottom">
-            <div id="cover-title">
-                <img id="cover" src="images/cover.png">
-                <p id="title">The Baby Is You - Toby "Radiation" Fox</p>
+            <img id="cover" src="images/cover.png">
+            <div id="player-right">
+                <p id="title">Requited - Clark Powell</p>
+                <input type="range" id="timeline" value="0" min="0" max="100" step="0.1">
+                <div id="under-timeline">
+                    <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+                    🔈<input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                </div>
             </div>
-            <div id="volume-slider">
-            </div>
-            <div id="timeline">
-            </div>
-            <div id="controls">
-                <button><img src="images/prev.png"></button>
-                <button id="playB"><img src="images/play.png"></button>
-                <button><img src="images/pause.png"></button>
-                <button><img src="images/stop.png"></button>
-                <button><img src="images/next.png"></button>
-            </div>
+        </div>
+        <div id="controls">
+            <button><img src="images/prev.png"></button>
+            <button id="playB"><img src="images/play.png"></button>
+            <button id="pauseB"><img src="images/pause.png"></button>
+            <button><img src="images/stop.png"></button>
+            <button><img src="images/next.png"></button>
         </div>
     </section>
 
