@@ -13,6 +13,8 @@
  * - Added media queries for images.
  * v1.3
  * - Added styles for the audio player.
+ * v1.4
+ * - Added curtains and fixed styling issues with the player.
  */
 
  /* ========================================
@@ -57,6 +59,7 @@ h4, h3, h2, h1 {
 
 p {
     text-align: center;
+    max-width: 75%;
 }
 
 button {
@@ -77,6 +80,7 @@ nav {
     background-color: black;
     position: -webkit-sticky;
     position: sticky;
+    width: 100%;
     top: 0;
     z-index: 1000;
 }
@@ -85,13 +89,14 @@ nav a {
     color: #228d11;
     margin: auto;
     @media (max-width: 600px) {
-        font-size: 1.1em;
+        font-size: 0.9em;
     }
 
    @media (min-width: 600px) {
         font-size: 1.8em;
     }
 }
+
 
 /* ========================================
    Concept
@@ -101,6 +106,37 @@ nav a {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* ========================================
+   Curtains
+   ======================================== */
+.curtains {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    top: 0;
+
+    img {
+        height: 100%;
+        width: fit-content;
+    }
+
+   @media (max-width: 600px) {
+        img {
+            display: none;
+        }
+    }
+}
+
+#curtain-left {
+    left: 0;
+}
+
+#curtain-right {
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* ========================================
@@ -182,6 +218,7 @@ nav a {
    ======================================== */
 
 #music-player {
+    background-color: black;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -231,6 +268,8 @@ nav a {
         background-color: grey;
         border-left: 9px solid black;
         border-right: 9px solid black;
+        margin: 0;
+        overflow: hidden;
 
         #cover {
             margin-left: 5%;
@@ -252,26 +291,33 @@ nav a {
     #player-right {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-evenly;
         width: 100%;
         background-color: transparent;
+        align-items: center;
     }
 
     #title {
-        margin-left: 20px;
         font-weight: bold;
+        margin: 0;
+        font-size: small;
+        text-align: center;
+        color: #F7F5F0;
     }
 
     #under-timeline {
+        width: 100%;
+        max-width: fit-content;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 8px;
+        gap: 2px;
+        margin: 0;
 
         span {
             white-space: nowrap;
+            font-size: small;
         }
 
         input {
@@ -284,7 +330,8 @@ nav a {
     #controls {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         background-color: black;
     }
@@ -304,7 +351,7 @@ input[type="range"] {
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 80%;
+  width: 50%;
 }
 
 /* Chrome, Safari, Opera, and Edge */
@@ -351,9 +398,13 @@ input[type="range"]::-moz-range-thumb {
 footer {
     background-color:darkgrey;
     margin-top: 5%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     p {
-        text-align: center;
         font-size: 0.8em;
+        margin-bottom: 0;
     }
 }

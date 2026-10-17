@@ -17,6 +17,8 @@
  * - Removed The Baby is You to make the website more appealing. Made the buttons
  *   transparent and borderless, added a timeline and volume slider to the player.
  *   Organized the code, added new trackers for page links.
+ * v1.4
+ * - Updated the audio player behavior, simplified.
  */
 
 /**
@@ -33,7 +35,17 @@ const surveyLink = document.querySelector("#survey");
 const githubLink = document.querySelector("#git")
 const playButton = document.querySelector("#playB");
 const pauseButton = document.querySelector("#pauseB")
-const track = new Audio("music/requited.mp3");
+const previousButton = document.querySelector("#prevB");
+const stopButton = document.querySelector("#stopB");
+const nextButton = document.querySelector("#nextB");
+const tracks = [
+    { src: "music/requited.mp3", title: "Requited - Clark Powell", cover: "images/cover.png" },
+    { src: "music/the_baby.mp3", title: "The Baby Is You", cover: "images/cover_baby.png" },
+    { src: "music/moonsetter.opus", title: "Moonsetter", cover: "images/cover_moonsetter.png" },
+];
+let currentTrackIndex = 0;
+const track = new Audio(tracks[currentTrackIndex].src);
+const coverImage = document.getElementById("cover");
 const unstickB = document.querySelector("#unstickB");
 const stickB = document.querySelector("#stickB")
 const displayButton = document.querySelector("#displayB");
@@ -41,6 +53,7 @@ const timeline = document.getElementById('timeline');
 const currentTimeDisplay = document.getElementById('current-time');
 const durationDisplay = document.getElementById('duration');
 const volumeSlider = document.getElementById('volume-slider');
+const titleDisplay = document.getElementById('title');
 
 
 /**
@@ -50,8 +63,8 @@ const volumeSlider = document.getElementById('volume-slider');
 initializeAnalytics();
 
 function playSound(path) {
-  const audio = new Audio(path);
-  audio.play();
+    const audio = new Audio(path);
+    audio.play();
 }
 
 if (jaspersButton) {
@@ -79,6 +92,7 @@ if (githubLink) {
 
 if (playButton) {
     playButton.addEventListener("click", () => {
+        track.volume = volumeSlider.value
         track.play();
     });
 }
@@ -89,39 +103,81 @@ if (pauseButton) {
     });
 }
 
-// Helper function to format seconds into MM:SS
-function formatTime(seconds) {
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+function selectTrack(index) {
+    currentTrackIndex = (index + tracks.length) % tracks.length;
+    track.pause();
+    track.src = tracks[currentTrackIndex].src;
+    track.load();
+    timeline.value = 0;
+    timeline.max = 0;
+    currentTimeDisplay.textContent = formatTime(0);
+    durationDisplay.textContent = formatTime(0);
+    titleDisplay.textContent = tracks[currentTrackIndex].title;
+    coverImage.src = tracks[currentTrackIndex].cover;
+    track.volume = volumeSlider.value
+    track.play();
 }
 
+if (previousButton) {
+    previousButton.addEventListener("click", () => {
+        selectTrack(currentTrackIndex - 1);
+    });
+}
+
+if (stopButton) {
+    stopButton.addEventListener("click", () => {
+        track.pause();
+        track.currentTime = 0;
+        timeline.value = 0;
+        currentTimeDisplay.textContent = formatTime(0);
+    });
+}
+
+if (nextButton) {
+    nextButton.addEventListener("click", () => {
+        selectTrack(currentTrackIndex + 1);
+    });
+}
+
+// Helper function to format seconds into MM:SS
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// Needed to get the max track duration
 track.addEventListener('loadedmetadata', () => {
-  timeline.max = track.duration;
-  durationDisplay.textContent = formatTime(track.duration);
+    timeline.max = track.duration;
+    durationDisplay.textContent = formatTime(track.duration);
 });
 
+// Updates displayed timeline slider and current time during normal playback,
+// unless seeking
 track.addEventListener('timeupdate', () => {
-  // Prevent slider jumping while the user is actively dragging it
-  if (!timeline.classList.contains('seeking')) {
-    timeline.value = track.currentTime;
-  }
-  currentTimeDisplay.textContent = formatTime(track.currentTime);
+    if (!timeline.matches(':active') && !track.seeking) {
+        timeline.value = track.currentTime;
+        currentTimeDisplay.textContent = formatTime(track.currentTime);
+    }
 });
 
 // Preview the selected time while dragging; no audio stutter
 timeline.addEventListener('input', () => {
-    timeline.classList.add('seeking');
     currentTimeDisplay.textContent = formatTime(Number(timeline.value));
 });
 
+// After user finishes dragging the timeline
 timeline.addEventListener('change', () => {
     track.currentTime = Number(timeline.value);
-    timeline.classList.remove('seeking');
+    currentTimeDisplay.textContent = formatTime(track.currentTime);
 });
 
+/**
+ * Volume
+ */
+
 volumeSlider.addEventListener('input', () => {
-  track.volume = volumeSlider.value;
+    track.volume = volumeSlider.value;
 });
 
 /**
