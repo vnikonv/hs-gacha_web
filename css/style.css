@@ -15,6 +15,8 @@
  * - Added styles for the audio player.
  * v1.4
  * - Added curtains and fixed styling issues with the player.
+ * v1.5
+ * - Added a new font, changed heading and navbar styles.
  */
 
  /* ========================================
@@ -31,6 +33,16 @@
     img {
         width: 50%;
     }
+}
+
+/* ========================================
+   Fonts
+   ======================================== */
+
+
+@font-face {
+  font-family: "Fontstuck";
+  src: url("../fonts/fontstuck.otf"), format("otf");
 }
 
 /* ========================================
@@ -51,6 +63,51 @@ body {
 
 section {
     margin-top: 20px;
+}
+
+h1 {
+    position: relative;
+    font-family: "Fontstuck", monospace;
+    color: white;
+    z-index: 1;
+}
+
+h1::before {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    color: transparent;
+
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0080ff,
+        #8000ff,
+        #ff0000
+    );
+
+    background-size: 600% 100%;
+    background-position: 0% 50%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    filter: blur(3px);
+    opacity: 0.95;
+
+    animation: rainbow-glow 10s linear infinite;
+}
+
+@keyframes rainbow-glow {
+    to {
+        background-position: 300% 50%;
+    }
 }
 
 h4, h3, h2, h1 {
@@ -83,18 +140,29 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
+    overflow: hidden;
 }
 
 nav a {
-    color: #228d11;
+    color: black;
     margin: auto;
     @media (max-width: 600px) {
-        font-size: 0.9em;
+        font-size: 0.7em;
     }
-
    @media (min-width: 600px) {
         font-size: 1.8em;
     }
+    border-width: 0.3em;
+    border-style: outset;
+    background-color: #257e18;
+    border-color: #257e18;
+    text-decoration: none;
+    padding: 0.3em 1.5em 0.2em 0.5em;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #acd75c;
 }
 
 
